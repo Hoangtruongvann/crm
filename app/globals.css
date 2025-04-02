@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+@layer base {
+  @import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-main-purple: #5C73DB;
+  --color-light-grey: #9FA6B2;
+  --color-main-blue-light: #5C73DB;
+  --color-secondary-blue-light: #4256D0;
+  --color-main-blue-dark: #0E1B6B;
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-primary: 'Inter', sans-serif;
+
+  --container-main: 1440px;
+
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #fafafa;
+    --foreground: #000000;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-primary);
+}
+
+.main-container {
+  max-width: var(--container-main);
+  margin: 0;
+}
+
+.paginater-next-prev:hover svg path {
+  @apply fill-white;
+}
