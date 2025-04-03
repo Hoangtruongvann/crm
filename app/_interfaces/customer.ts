@@ -1,9 +1,11 @@
+import { Status } from "@prisma/client";
+
 interface Customer {
   name: string;
   email: string;
   phone: string;
   address: string;
-  status: string;
+  status: Status;
   last_contacted: string;
 }
 

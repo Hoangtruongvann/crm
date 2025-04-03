@@ -1,4 +1,4 @@
-import { CustomerQueryParams } from "@/app/_interfaces";
+import { Customer, CustomerQueryParams } from "@/app/_interfaces";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
@@ -36,4 +36,10 @@ const getCustomersByQuery = async (queryParams: CustomerQueryParams) => {
   };
 };
 
-export { getAllCustomers, getCustomersByQuery };
+const createCustomer = async (customer: Customer) => {
+  return await prisma.customer.create({
+    data: customer,
+  });
+};
+
+export { getAllCustomers, getCustomersByQuery, createCustomer };

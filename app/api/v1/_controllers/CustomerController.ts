@@ -1,4 +1,7 @@
-import { getCustomersByQuery } from "@/app/api/v1/_services/CustomerServices";
+import {
+  createCustomer,
+  getCustomersByQuery,
+} from "@/app/api/v1/_services/CustomerServices";
 
 const index = async (req: Request) => {
   // Destructure the necessary parameters
@@ -17,4 +20,9 @@ const index = async (req: Request) => {
   return new Response(JSON.stringify(customers), { status: 200 });
 };
 
-export { index };
+const create = async (req: Request) => {
+  const body = await req.json();
+  const customer = createCustomer(body);
+  return new Response(JSON.stringify(customer), { status: 201 });
+};
+export { index, create };
