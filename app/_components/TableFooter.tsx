@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { TableFooterProps } from "./interfaces"
-export default function TableFooter({ totalPages, currentPage, setCurrentPage, perPage }: TableFooterProps) {
+export default function TableFooter({ totalItems, totalPages, currentPage, setCurrentPage, perPage }: TableFooterProps) {
 
     const [pageNumbers, setPageNumbers] = useState<(number | string)[]>([]);
     const setUpPageNumber = () => {
@@ -42,19 +42,31 @@ export default function TableFooter({ totalPages, currentPage, setCurrentPage, p
         return pageNumbers;
     }
 
+    const gotoNext = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+        }
+    }
+
+    const gotoPrev = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+        }
+    }
 
     useEffect(() => {
         setPageNumbers(setUpPageNumber());
-        setCurrentPage(1);
     },
         [totalPages, perPage]
     )
 
+    if (!totalItems) return <></>
+
     return (
         <div className="flex justify-between w-full gap-4 px-6">
-            <p className="text-gray-600">Showing {(perPage * currentPage) - perPage + 1} to {10 * currentPage} of {totalPages * 10} entries</p>
+            <p className="text-gray-600">Showing {(perPage * currentPage) - perPage + 1} to {10 * currentPage} of {totalItems} entries</p>
             <div className="border border-gray-300 rounded-sm flex overflow-hidden bg-zinc-100 text-sm">
-                <div className="border-r border-gray-300 cursor-pointer flex items-center justify-center px-3.5 py-2 hover:bg-main-purple hover:text-white paginater-next-prev">
+                <div onClick={gotoPrev} className="border-r border-gray-300 cursor-pointer flex items-center justify-center px-3.5 py-2 hover:bg-main-purple hover:text-white paginater-next-prev">
                     <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path fillRule="evenodd" clipRule="evenodd" d="M5.70711 0.292893C6.09763 0.683417 6.09763 1.31658 5.70711 1.70711L2.41421 5L5.70711 8.29289C6.09763 8.68342 6.09763 9.31658 5.70711 9.70711C5.31658 10.0976 4.68342 10.0976 4.29289 9.70711L0.292893 5.70711C-0.0976311 5.31658 -0.0976311 4.68342 0.292893 4.29289L4.29289 0.292893C4.68342 -0.0976311 5.31658 -0.0976311 5.70711 0.292893Z" fill="#71717A" />
                     </svg>
@@ -69,7 +81,7 @@ export default function TableFooter({ totalPages, currentPage, setCurrentPage, p
                         {page}
                     </button>
                 ))}
-                <div className="cursor-pointer flex items-center justify-center px-3.5 py-2 hover:bg-main-purple hover:text-white paginater-next-prev">
+                <div onClick={gotoNext} className="cursor-pointer flex items-center justify-center px-3.5 py-2 hover:bg-main-purple hover:text-white paginater-next-prev">
                     <svg width="6" height="10" viewBox="0 0 6 10" fill="none" xmlns="http://www.w3.org/2000/svg" className="rotate-180">
                         <path fillRule="evenodd" clipRule="evenodd" d="M5.70711 0.292893C6.09763 0.683417 6.09763 1.31658 5.70711 1.70711L2.41421 5L5.70711 8.29289C6.09763 8.68342 6.09763 9.31658 5.70711 9.70711C5.31658 10.0976 4.68342 10.0976 4.29289 9.70711L0.292893 5.70711C-0.0976311 5.31658 -0.0976311 4.68342 0.292893 4.29289L4.29289 0.292893C4.68342 -0.0976311 5.31658 -0.0976311 5.70711 0.292893Z" fill="#71717A" />
                     </svg>

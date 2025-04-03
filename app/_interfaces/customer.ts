@@ -4,7 +4,13 @@ interface Customer {
   phone: string;
   address: string;
   status: string;
-  lastContacted: string;
+  last_contacted: string;
 }
 
-export type { Customer };
+interface CustomerQueryParams {
+  page: number;
+  limit: number;
+  search: string;
+}
+
+export type { Customer, CustomerQueryParams };
