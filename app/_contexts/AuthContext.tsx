@@ -10,13 +10,13 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
     useEffect(() => {
         const token = localStorage.getItem('token');
-        console.log(token)
-        if (token)
-            setAuth(true);
 
         if (!token)
             router.push('/login')
-    }, [auth])
+
+        if (token)
+            setAuth(true);
+    }, [])
 
     if (!auth) return;
 
