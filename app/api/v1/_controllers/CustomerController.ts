@@ -1,6 +1,8 @@
 import {
   createCustomer,
   getCustomersByQuery,
+  getCustomerByID,
+  updateCustomer,
 } from "@/app/api/v1/_services/CustomerServices";
 
 const index = async (req: Request) => {
@@ -25,4 +27,19 @@ const create = async (req: Request) => {
   const customer = createCustomer(body);
   return new Response(JSON.stringify(customer), { status: 201 });
 };
-export { index, create };
+
+const detail = async (req: Request) => {
+  const url = new URL(req.url);
+  const id = url.pathname.split("/").pop();
+  const customer = await getCustomerByID(Number(id));
+  return new Response(JSON.stringify(customer), { status: 200 });
+};
+
+const update = async (req: Request) => {
+  const url = new URL(req.url);
+  const id = url.pathname.split("/").pop();
+  const body = await req.json();
+  const customer = updateCustomer(Number(id), body);
+  return new Response(JSON.stringify(customer), { status: 200 });
+};
+export { index, create, detail, update };

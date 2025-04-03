@@ -1,5 +1,7 @@
 import { Customer, CustomerQueryParams } from "@/app/_interfaces";
+import { da } from "@faker-js/faker";
 import { PrismaClient } from "@prisma/client";
+import { number } from "zod";
 
 const prisma = new PrismaClient();
 
@@ -16,6 +18,9 @@ const getCustomersByQuery = async (queryParams: CustomerQueryParams) => {
       name: {
         contains: search,
       },
+    },
+    orderBy: {
+      last_contacted: "desc",
     },
   });
 
@@ -37,9 +42,36 @@ const getCustomersByQuery = async (queryParams: CustomerQueryParams) => {
 };
 
 const createCustomer = async (customer: Customer) => {
+  const { name, email, phone, address, status, last_contacted } = customer;
+  const data = { name, email, phone, address, status, last_contacted };
   return await prisma.customer.create({
-    data: customer,
+    data: data,
   });
 };
 
-export { getAllCustomers, getCustomersByQuery, createCustomer };
+const updateCustomer = async (id: number, customer: Customer) => {
+  const { name, email, phone, address, status, last_contacted } = customer;
+  const data = { name, email, phone, address, status, last_contacted };
+  return await prisma.customer.update({
+    where: {
+      id,
+    },
+    data: data,
+  });
+};
+
+const getCustomerByID = async (id: number) => {
+  return await prisma.customer.findUnique({
+    where: {
+      id,
+    },
+  });
+};
+
+export {
+  getAllCustomers,
+  getCustomersByQuery,
+  createCustomer,
+  getCustomerByID,
+  updateCustomer,
+};

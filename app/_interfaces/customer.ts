@@ -1,6 +1,7 @@
 import { Status } from "@prisma/client";
 
 interface Customer {
+  id?: string | number;
   name: string;
   email: string;
   phone: string;

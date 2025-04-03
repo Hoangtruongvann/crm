@@ -6,4 +6,10 @@ interface CustomerRowProps {
   onDelete: (index: number) => void;
 }
 
-export type { CustomerRowProps };
+interface CustomerFormProps {
+  id?: string | null;
+  customer?: Customer;
+  handler: any;
+}
+
+export type { CustomerRowProps, CustomerFormProps };

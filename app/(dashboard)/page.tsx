@@ -1,9 +1,9 @@
 'use client';
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { CustomerRow, TableSleketon } from "./components";
+import { CustomerRow, TableSleketon } from "./_components";
 import TableFooter from "@/app/_components/TableFooter";
-import useCustomers from "@/app/_hooks/useCustomers";
+import { useCustomers } from "@/app/_hooks";
 import { Customer } from "@/app/_interfaces";
 
 export default function Page() {
@@ -11,9 +11,7 @@ export default function Page() {
     const [search, setSearch] = useState("");
     const [debouncedSearch, setDebouncedSearch] = useState("");
     const { customersTableData, isCustomersLoading } = useCustomers({ page: currentPage, limit: 10, search: debouncedSearch });
-    const onDelete = (index: number) => {
 
-    }
 
     useEffect(() => {
         // Set a timeout to update debounced search value after 3 seconds
@@ -56,7 +54,7 @@ export default function Page() {
                                 <TableSleketon />
                                 :
                                 customersTableData.customers.map((customer: Customer, index: number) => (
-                                    <CustomerRow key={index} customer={customer} index={index} onDelete={onDelete} />
+                                    <CustomerRow key={index} customer={customer} index={index} onDelete={(index: number) => { }} />
                                 ))
                             }
                         </tbody>

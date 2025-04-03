@@ -3,7 +3,7 @@ import { z } from "zod";
 export type CustomerFormData = z.infer<typeof customerFormSchema>;
 
 export const customerFormSchema = z.object({
-  fullname: z.string().min(1, { message: "Fullname is required" }),
+  name: z.string().min(1, { message: "Fullname is required" }),
   email: z
     .string()
     .min(1, { message: "Email is required" })

@@ -3,8 +3,8 @@ import { axiosPrivate } from "@/app/_hooks/useAxios";
 import { Customer } from "@/app/_interfaces";
 
 export default function useCreateCustomer() {
-  const createCustomer = (customer: Customer) => {
-    return axiosPrivate.post("/customers", customer);
+  const createCustomer = async (customer: Customer) => {
+    return await axiosPrivate.post("/customers", customer);
   };
 
   const {
