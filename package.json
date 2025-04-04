@@ -10,7 +10,7 @@
     "migrate:create": "prisma migrate dev --create-only",
     "migrate": "prisma migrate dev",
     "migrate:deploy": "prisma migrate deploy",
-    "migrate:seed": "node prisma/seed.ts"
+    "migrate:seed": "node prisma/seed.js"
   },
   "dependencies": {
     "@faker-js/faker": "^9.6.0",
