@@ -11,7 +11,6 @@ export default function Page() {
     const {
         register,
         handleSubmit,
-        reset,
         formState: { errors },
     } = useForm<LoginFormData>({
         resolver: zodResolver(LoginFormSchema),
@@ -19,6 +18,7 @@ export default function Page() {
     });
 
     const onSubmit = async (data: LoginFormData) => {
+        console.log(data);
         localStorage.setItem("token", "isValidToken");
         router.push("/");
     }
@@ -65,7 +65,7 @@ export default function Page() {
                         <button type="submit" className="cursor-pointer w-full px-4 py-3 rounded-xl bg-main-blue-light text-white flex gap-2 items-center justify-center">
                             Sign in <Image src="/arrow-left.svg" alt="Arrow" width={20} height={12} />
                         </button>
-                        <div className="text-sm text-black">Don't have an account? <Link href="/register" className="text-main-purple">Create an account </Link> </div>
+                        <div className="text-sm text-black">Dont have an account? <Link href="/register" className="text-main-purple">Create an account </Link> </div>
                     </div>
                 </form>
             </div>

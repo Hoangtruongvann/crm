@@ -1,7 +1,5 @@
 import { Customer, CustomerQueryParams } from "@/app/_interfaces";
-import { da } from "@faker-js/faker";
 import { PrismaClient } from "@prisma/client";
-import { number } from "zod";
 
 const prisma = new PrismaClient();
 

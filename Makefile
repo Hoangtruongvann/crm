@@ -1,5 +1,15 @@
-setup:
-	npm i && npm run migrate && npm run migrate:seed
+up:
+	sudo docker compose up -d
 
-dev:
-	npm run dev
+build:
+	sudo docker compose up -d --build
+
+down:
+	docker compose down
+
+migrate:
+	docker exec -it nextjs-app npm run migrate
+
+seed:
+	docker exec -it nextjs-app npm run migrate:seed
+

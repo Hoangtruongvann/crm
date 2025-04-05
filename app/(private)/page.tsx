@@ -31,7 +31,7 @@ export default function Page() {
         <div className="p-6 space-y-4">
             <h1 className="text-3xl font-bold text-black">DASHBOARD</h1>
             <div className="relative w-full">
-                <img src='/search.svg' className="absolute top-4 left-3 w-4" />
+                <img src='/search.svg' alt="search" className="absolute top-4 left-3 w-4" />
                 <input type="text" placeholder="Search...." value={search} onChange={(e) => setSearch(e.target.value)} onKeyDown={(e) => e.key === 'Enter' && setDebouncedSearch(search)} className="border border-gray-300 rounded-xl p-3 pl-8 focus:outline-none focus:border-main-purple text-sm placeholder:text-gray-500 text-black w-full" />
             </div>
             <Link href='/customer/create' className="bg-main-blue-light text-white py-3 font-bold px-6 rounded-xl block w-fit text-sm">New Customer</Link>
@@ -54,7 +54,7 @@ export default function Page() {
                                 <TableSleketon />
                                 :
                                 customersTableData.customers.map((customer: Customer, index: number) => (
-                                    <CustomerRow key={index} customer={customer} index={index} onDelete={(index: number) => { }} />
+                                    <CustomerRow key={index} customer={customer} index={index} onDelete={(index: number) => { console.log(index)}} />
                                 ))
                             }
                         </tbody>

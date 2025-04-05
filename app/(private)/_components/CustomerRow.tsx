@@ -12,7 +12,7 @@ export default function CustomerRow({ customer, index, onDelete }: CustomerRowPr
             <td className="p-4">{new Date(customer.last_contacted).toDateString()}</td>
             <td className="p-4 flex gap-2 ">
                 <Link href={`/customer/${customer.id}`} className="bg-transparent border-main-purple text-main-purple py-2 px-4 rounded-xl">Edit</Link>
-                <button className="bg-red-600 text-white py-2 px-4 rounded-xl cursor-pointer">Delete</button>
+                <button onClick={() => onDelete(Number(customer.id))} className="bg-red-600 text-white py-2 px-4 rounded-xl cursor-pointer">Delete</button>
             </td>
         </tr>
     )

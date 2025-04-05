@@ -11,14 +11,16 @@ First, copy & update value the .env from .env.example:
 then, run set up the development server:
 
 ```bash
-    make setup
+    make build
 ```
 
-Finally, run the development server:
+then, run migrate & seeding database:
 
 ```bash
-    make dev
+    make migrate
+    make seed
 ```
+
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 

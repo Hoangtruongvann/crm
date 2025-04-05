@@ -1,5 +1,5 @@
 'use client';
-import { use, useEffect } from "react";
+import {  useEffect } from "react";
 import { useCustomerDetail, useUpdateCustomer } from "@/app/_hooks";
 import { useParams } from 'next/navigation'
 import { useRouter } from 'next/navigation'
@@ -9,7 +9,7 @@ import toast from "react-hot-toast";
 export default function Page() {
     const params = useParams<{ id: string }>()
 
-    const { isCustomerUpdated, customerDataUpdated, handleUpdateCustomer } = useUpdateCustomer();
+    const { isCustomerUpdated, handleUpdateCustomer } = useUpdateCustomer();
     const { customerData } = useCustomerDetail(params.id);
 
 

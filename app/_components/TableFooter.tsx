@@ -3,43 +3,44 @@ import { TableFooterProps } from "./interfaces"
 export default function TableFooter({ totalItems, totalPages, currentPage, setCurrentPage, perPage }: TableFooterProps) {
 
     const [pageNumbers, setPageNumbers] = useState<(number | string)[]>([]);
-    const setUpPageNumber = () => {
-        const pageNumbers: (number | string)[] = [];
+
+    const createPageNumbers = () => {
+        const result: (number | string)[] = [];
         if (totalPages <= 9) {
             // Nếu tổng số trang nhỏ hơn hoặc bằng 8, hiển thị tất cả
             for (let i = 1; i <= totalPages; i++) {
-                pageNumbers.push(i);
+                result.push(i);
             }
         } else {
-            pageNumbers.push(1); // Luôn có trang đầu
+            result.push(1); // Luôn có trang đầu
 
             if (currentPage <= 5) {
                 // Hiển thị đầu danh sách: 1 2 3 4 5 ... n-1 n
                 for (let i = 2; i <= 6; i++) {
-                    pageNumbers.push(i);
+                    result.push(i);
                 }
-                pageNumbers.push("...");
-                pageNumbers.push(totalPages - 1);
+                result.push("...");
+                result.push(totalPages - 1);
             } else if (currentPage >= totalPages - 5) {
                 // Hiển thị cuối danh sách: 1 ... n-4 n-3 n-2 n-1 n
-                pageNumbers.push("...");
+                result.push("...");
                 for (let i = totalPages - 6; i < totalPages; i++) {
-                    pageNumbers.push(i);
+                    result.push(i);
                 }
             } else {
                 // Hiển thị giữa danh sách: 1 ... k-2 k-1 k k+1 k+2 ... n
-                pageNumbers.push("...");
-                pageNumbers.push(currentPage - 2);
-                pageNumbers.push(currentPage - 1);
-                pageNumbers.push(currentPage);
-                pageNumbers.push(currentPage + 1);
-                pageNumbers.push(currentPage + 2);
-                pageNumbers.push("...");
+                result.push("...");
+                result.push(currentPage - 2);
+                result.push(currentPage - 1);
+                result.push(currentPage);
+                result.push(currentPage + 1);
+                result.push(currentPage + 2);
+                result.push("...");
             }
 
-            pageNumbers.push(totalPages); // Luôn có trang cuối
+            result.push(totalPages); // Luôn có trang cuối
         }
-        return pageNumbers;
+        return result;
     }
 
     const gotoNext = () => {
@@ -55,7 +56,7 @@ export default function TableFooter({ totalItems, totalPages, currentPage, setCu
     }
 
     useEffect(() => {
-        setPageNumbers(setUpPageNumber());
+        setPageNumbers(createPageNumbers());
     },
         [totalPages, perPage]
     )

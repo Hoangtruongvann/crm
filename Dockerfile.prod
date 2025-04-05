@@ -1,0 +1,27 @@
+# Dockerfile
+
+# Build step
+FROM node:18-alpine AS builder
+WORKDIR /app
+
+# Only copy what's needed
+COPY package.json ./
+RUN npm install
+
+# Copy your existing Next.js source
+COPY . .
+
+
+# Build your app
+RUN npx prisma generate
+RUN npm run build
+
+# Production image
+FROM node:18-alpine
+WORKDIR /app
+
+COPY --from=builder /app ./
+ENV NODE_ENV=production
+EXPOSE 3000
+
+CMD npm start

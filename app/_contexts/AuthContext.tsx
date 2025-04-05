@@ -6,7 +6,7 @@ const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const router = useRouter();
-    const [auth, setAuth] = useState<Boolean>();
+    const [auth, setAuth] = useState<boolean>();
 
     useEffect(() => {
         const token = localStorage.getItem('token');
